@@ -4,6 +4,7 @@
   "description": "Aplicacion web para regalos, tradeos y eventos",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,10 @@
   },
   "homepage": "https://gitlab.com/santiagocb/GTM#README",
   "dependencies": {
+    "mongoose": "^4.9.6",
     "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
