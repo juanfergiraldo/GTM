@@ -1,5 +1,5 @@
-const moongose = require('moongose')
-const Schema = moongose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 var solicitud = new Schema({
 	_codigo: {type: String}
@@ -7,4 +7,4 @@ var solicitud = new Schema({
 	usuario_pide: {type: String}
 });
 
-mongoose.model('Solicitud', solicitud)
+module.exports = mongoose.model('Solicitud', solicitud)

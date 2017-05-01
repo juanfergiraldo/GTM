@@ -1,6 +1,5 @@
-const moongose = require('moongose');
-const Schema = moongose.Schema;
-
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 var publicacion = new Schema({
 	_codigo: {type: String},
@@ -13,4 +12,4 @@ var publicacion = new Schema({
 	usuario_publica: {type: String}
 });
 
-mongoose.model('Publicacion', publicacion)
+module.exports = mongoose.model('Publicacion', publicacion)
