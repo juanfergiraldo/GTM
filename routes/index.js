@@ -5,18 +5,26 @@ const usuarioCtrl = require('../controllers/usuario')
 const auth = require('../middlewares/auth')
 const gtm = express.Router()
 
-//endpoint enviar todas las publicaciones
+
+//endpoint generar publicacion
+gtm.post('/publicacion', publicacionCtrl.createPublicacion)
+//endpoint enviar todas las publicaciones  PARA VER COLECCIONES DE LA DB
 gtm.get('/publicacion', publicacionCtrl.getPublicaciones)
 //endpoint eliminar publicacion
 gtm.delete('/publicacion', publicacionCtrl.deletePublicacion)
 //endpoint actualizar publicacion
 gtm.put('/publicacion', publicacionCtrl.updatePublicacion)
+
+
+//enpoint para ver todos los usuarios PARA VER COLECCIONES DE LA DB
+gtm.get('/usuarios', usuarioCtrl.getUsuarios)
 //endpoint registro usuario
-//gtm.post('/usuario', usuarioCtrl) //poner bien
-//endpoint obtener usuarios
-//gtm.get('/usuario', usuarioCtrl)
+gtm.post('/signup', usuarioCtrl.registro)
+//endpoint para login
+gtm.post('/signin', usuarioCtrl.iniciarSesion)
+
 //para probar el middleware de comprobación
-gtm.get('/private', auth.isAuth, function(req, res){
+gtm.get('/private', auth, function(req, res){
 	res.status(200).send({ message: 'Tienes acceso' })
 })	
 

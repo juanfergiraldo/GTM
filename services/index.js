@@ -1,3 +1,4 @@
+
 const jwt = require('jwt-simple')
 const moment = require('moment')
 const config = require('../config')
@@ -12,4 +13,31 @@ function crearToken(usuario){
 
 	return jwt.encode(payload, config.SECRET_TOKEN)
 }
-module.exports = crearToken
+
+function decodeToken(token){		//uso de promesas de forma nativa, dentro del propio lenguaje, sin terceros
+	const decoded = new Promise((resolve, reject) => {    	//decoded tendra una promesa, si se resuelve => token codificado
+		try{											  	//sino, un mensaje diferente
+			const payload = jwt.decode(token, config.SECRET_TOKEN)
+
+			if(payload.exp <= moment.unix()){
+				reject({
+					status: 401,
+					message: 'Token expirado'
+				})
+			}
+			resolve(payload.sub)  //id del usuario
+
+		} catch (err){
+			reject({
+				status: 500,
+				message: 'Token invalidado'
+			})
+		}
+	})
+	return decoded
+}
+
+module.exports = {
+	crearToken,
+	decodeToken
+}

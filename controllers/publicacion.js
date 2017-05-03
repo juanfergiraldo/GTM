@@ -34,8 +34,24 @@ function updatePublicacion (req, res){
 	})
 }
 
+function createPublicacion (req, res){	
+	const publicacion = new Publicacion({		
+		descripcion: req.body.descripcion,
+		nombre_producto: req.body.nombre_producto,
+		categoria: req.body.categoria
+		//usuario_que_publica: req.user
+		//imagen: req.body.imagen	
+	})
+
+	publicacion.save((err, publicacionStored) => {
+		if (err) res.status(500).send({message: `Error al generar la publicacion: ${err}`})
+		res.status(200).send({ publicacion: publicacionStored}) 
+ 	})
+}
+
 module.exports = {
 	getPublicaciones,
 	deletePublicacion,
-	updatePublicacion
+	updatePublicacion,
+	createPublicacion
 }
