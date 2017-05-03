@@ -1,17 +1,17 @@
 
 const mongoose = require('mongoose')
 const app = require('./app')
-const port = process.env.PORT || 3000
+const config = require('./config')
 //npm para iniciar el server
 
 
-mongoose.connect('mongodb://localhost:27017/gtmdb', (err, res) => {
+mongoose.connect(config.db, (err, res) => {
 	if(err){
 		return console.log(`Error al conectar a la base de datos: ${err}`)
 	}
 	console.log('Conexion a la base de datos establecida.')
-	app.listen(port, () => {
-	console.log(`API Rest corriendo en http://localhost:${port}`);
+	app.listen(config.port, () => {
+	console.log(`API Rest corriendo en http://localhost:${config.port}`);
 	})
 })
 
