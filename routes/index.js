@@ -26,6 +26,6 @@ gtm.post('/signin', usuarioCtrl.iniciarSesion)
 //para probar el middleware de comprobación
 gtm.get('/private', auth, function(req, res){
 	res.status(200).send({ message: 'Tienes acceso' })
-})	
+})
 
 module.exports = gtm
