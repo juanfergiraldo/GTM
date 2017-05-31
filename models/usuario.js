@@ -1,5 +1,5 @@
 
-const mongoose = require('mongoose')  
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt-nodejs') //libreria para encriptar
 const crypto = require('crypto')
@@ -8,7 +8,7 @@ const crypto = require('crypto')
 var usuarioSchema = new Schema({
 	correo: {type: String, unique: true, lowercase: true},
 	nombre: {type: String},
-	avatar: {type: String},
+	//avatar: {type: String},
 	direccion: {type: String, default: ''},
 	telefono: {type: String, default: ''},
 	pais: {type: String, default: ''},
@@ -26,10 +26,10 @@ usuarioSchema.pre('save', function(next){
 	bcrypt.genSalt(10, (err, salt) => {
 		if (err) return next(err)
 		bcrypt.hash(user.contrasena, salt, null, (err, hash) => {
-			if (err) return next(err)		
+			if (err) return next(err)
 			user.contrasena = hash
 			next()
-		})		
+		})
 	})
 })
 

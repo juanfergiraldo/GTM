@@ -1,12 +1,13 @@
 (function () {
-  function logeoController($scope, serviceApp){
-    $scope.traerUser = function () {              //lógica de post para registlogin con angular
-
-      serviceApp.getUser().then(function(data) {
-          console.log(data);
-          $scope.usuarios = data.data
+  function signupController($scope, serviceApp){
+    $scope.registrarse = function() {
+      serviceApp.registrarse($scope.user).then(function(data) {
+        console.log(data);
       })
     }
+
+
   }
-  angular.module('app').controller('logeoController', logeoController)
+  angular.module('app').controller('signupController', signupController)
 })()
+  

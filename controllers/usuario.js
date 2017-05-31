@@ -9,9 +9,9 @@ function registro(req, res){
 		nombre: req.body.nombre,
 		usuario: req.body.usuario,
 		contrasena: req.body.contrasena
-		//imagen: req.body.imagen	
+		//imagen: req.body.imagen
 	})
-
+console.log(req.body); //Mostrar mediante consola lo que se que está enviando por parámetro en el middleware
 	usuario.save((err) => {
 		if (err) res.status(500).send({message: `Error al crear el usuario: ${err}`})
 		return res.status(201).send({token: service.crearToken(usuario)})
@@ -41,8 +41,7 @@ function getUsuarios (req, res){
 }
 
 module.exports = {
-	registro, 
+	registro,
 	iniciarSesion,
 	getUsuarios
 }
-
