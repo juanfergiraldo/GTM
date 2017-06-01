@@ -9,8 +9,20 @@
       return $http.post(server + "signup", data)    //no sabemos como implementar post en angular
     }
     //establecer servicios de registrar, logeo
-    this.getProductos = function(){
+    this.getPublicaciones = function(){
       return $http.get(server + "publicacion")
+    }
+    this.iniciarSesion = function(data) {
+      return $http.post(server + "signin", data)
+    }
+    this.crearPublicacion = function() {
+      return $http.post(server + "publicacion", data)
+    }
+    this.modificarPerfil = function(data) {
+      return $http.put(server + "perfil", data)
+    }
+    this.getUsuario = function() {
+      return $http.get(server + "perfil")
     }
   }
 

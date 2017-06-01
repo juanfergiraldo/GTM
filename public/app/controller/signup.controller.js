@@ -15,7 +15,7 @@
     $scope.registrarse = function() {
       serviceApp.registrarse($scope.user).then(function(data) {
         console.log(data);
-        $state.go("homelog")
+        $state.go("homeini.signin")
 
       })
     }

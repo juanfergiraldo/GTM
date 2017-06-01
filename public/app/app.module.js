@@ -1,7 +1,7 @@
 (function () {
   var config = function ($stateProvider,$urlRouterProvider) {
         $stateProvider
-              .state('home', {
+              /*.state('home', {
                 url: 'home',
                 templateUrl:'/public/app/auth/home.html',
                 controller:'homeController'
@@ -19,7 +19,7 @@
               })
               .state('login.prueba', { //Para ver cómo funciona
                 templateUrl:'/public/app/auth/prueba.html'
-              })
+              })*/
               .state('homeini', { //No sé cómo ubicarla en el árbol
                 url: '/',
                 templateUrl:'/public/app/views/homeini.html'
@@ -37,6 +37,17 @@
               .state('homelog', { //No sé cómo ubicarla en el árbol
                 url: '/homelog',
                 templateUrl:'/public/app/views/homelog.html' //Hoja donde el usuario ya se encuentra logeado
+                controller:'homelogController'
+              })
+              .state('homelog.publicar', {
+                url: 'publicar',
+                templateUrl:'/public/app/views/publicar.html'
+                controller:'publicarController'
+              })
+              .state('perfil', {
+                url: '/perfil',
+                templateUrl:'/public/app/views/perfil.html'
+                controller:'modificarPerfil' 
               })
               $urlRouterProvider.otherwise('/');
       }

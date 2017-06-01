@@ -1,13 +1,13 @@
 (function () {
-  function signupController($scope, serviceApp){
-    $scope.registrarse = function() {
-      serviceApp.registrarse($scope.user).then(function(data) {
+  function singInController($scope, serviceApp, $state){
+    $scope.iniciarSesion = function() {
+      serviceApp.iniciarSesion($scope.user).then(function(data) {
         console.log(data);
+        $state.go("homelog")
       })
     }
 
 
   }
-  angular.module('app').controller('signupController', signupController)
+  angular.module('app').controller('singInController', singInController)
 })()
-  

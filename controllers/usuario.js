@@ -19,10 +19,11 @@ console.log(req.body); //Mostrar mediante consola lo que se que está enviando p
 }
 
 function iniciarSesion(req, res){
-	Usuario.find({ email: req.body.email}, (err, usuario) => {
+	Usuario.find({ email: req.body.email}, (err, usuario) => {		//probar con otras passwords
 		if(err) return res.status(500).send({message: err})
 		if(!usuario) return res.status(404).send({message: `No existe el usuario`})
 
+		var sesion = usuario			//usuario en sesion
 		req.usuario = usuario
 		res.status(200).send({
 			message: 'Logueado correctamente',
@@ -31,17 +32,29 @@ function iniciarSesion(req, res){
 	})
 }
 
-function getUsuarios (req, res){
-	Usuario.find({}, (err, usuarios) => {
+/*function updateUsuario (req, res){
+	let usuarioid = req.body.publicacionid
+	let update = req.body
+
+	Publicacion.findByIdAndUpdate(publicacionid, update, (err, publicacionUpdated) => {
+		if(err) res.status(500).send({message: `Error al actualizar la publicación: ${err}`})
+		res.status(200).send({publicacion: publicacionUpdated})
+	})
+}*/
+
+function getUsuario(req, res){
+	let usuarioNick = req.params.usuarioNick
+
+	Usuario.findByUsuario(usuarioNick, (err, usuario) => {
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
 		if(!usuarios) return res.status(404).send('No existen usuarios')
 
-		res.status(200).send(usuarios)
+		res.status(200).send({usuario})
 	})
 }
 
 module.exports = {
 	registro,
 	iniciarSesion,
-	getUsuarios
+	getUsuario
 }
