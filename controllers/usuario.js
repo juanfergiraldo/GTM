@@ -18,7 +18,6 @@ function registro(req, res){ //No se requiere la constraseña ya que en la base 
  	})
 }
 
-<<<<<<< HEAD
 /*function iniciarSesion(req, res){
 	/*Usuario.find({usuario: req.body.usuario}, (err, u) => { //Vía AJAX
 		if(err) return res.status(500).send({message: err})
