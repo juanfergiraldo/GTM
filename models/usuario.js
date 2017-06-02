@@ -14,12 +14,12 @@ var usuarioSchema = new Schema({
 	pais: {type: String, default: ''},
 	genero: {type: String, enum: ['Masculino','Femenino','Indefinido']},
 	usuario: {type: String, unique: true, lowercase: true},
-	contrasena: {type: String, select: false}, //con select = false evitamos que la contraseña sea enviada al cliente
+	contrasena: {type: String}, //con select = false evitamos que la contraseña sea enviada al cliente
 	fecha_registro: {type: Date, default: Date.now()},
 	ultimo_login: Date
 })
 
-usuarioSchema.pre('save', function(next){ //Algoritmo para codificar la contraseña antes de ser guardada
+/*usuarioSchema.pre('save', function(next){ //Algoritmo para codificar la contraseña antes de ser guardada
 	let user = this
 	if (!user.isModified('contrasena')) return next()
 
@@ -31,7 +31,11 @@ usuarioSchema.pre('save', function(next){ //Algoritmo para codificar la contrase
 			next()
 		})
 	})
-})
+})*/
+
+usuarioSchema.statics.findOneByCorreo = function(correo, callback){
+    this.findOne({correo: new RegExp(correo, 'i')}, callback);
+};
 
 usuarioSchema.methods.gravatar = function(){ //A partir de un email nos devuelve un avatar por defecto, si no está registrado
 	if(!this.correo)

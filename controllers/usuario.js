@@ -4,6 +4,7 @@ const Usuario = require('../models/usuario')
 const service = require	('../services')
 
 
+
 function registro(req, res){ //No se requiere la constraseña ya que en la base de datos se hashea para no exponerla
 	const usuario = new Usuario({
 		correo: req.body.correo,
@@ -18,38 +19,25 @@ function registro(req, res){ //No se requiere la constraseña ya que en la base 
  	})
 }
 
-/*function iniciarSesion(req, res){
-	/*Usuario.find({usuario: req.body.usuario}, (err, u) => { //Vía AJAX
-		if(err) return res.status(500).send({message: err})
-		if(!usuario) return res.status(404).send({message: `No existe el usuario`})
-
-		console.log(req.body);
-=======
 function iniciarSesion(req, res){
-	Usuario.find({ email: req.body.email}, (err, usuario) => {		//probar con otras passwords
+	Usuario.findOneByCorreo(req.body.correo, (err, usuario) => {
 		if(err) return res.status(500).send({message: err})
+		console.log(usuario)
 		if(!usuario) return res.status(404).send({message: `No existe el usuario`})
+		if(usuario.contrasena == req.body.contrasena){
 
-		var sesion = usuario			//usuario en sesion
->>>>>>> b19598e06c21e54b9344647ec3c28c6a8b940398
-		req.usuario = usuario
-		res.status(200).send({
-			message: 'Logueado correctamente',
-			token: service.crearToken(usuario)
+			res.status(200).send({
+				message: 'Logueado correctamente',
+				token: service.crearToken(usuario)
+			})
+		}else{
+			return res.status(422).send({message: `La password no corresponde`})
+		}
 	})
+}
 
-	Usuario.find({correo: req.body.correo}, (err, usuario) => {
-		if(err) return res.status(500).send({message: err})
-		if(!usuario) return res.status(404).send({message: `No existe el usuario`})
 
-		req.usuario = usuario
-		res.status(200).send({
-			message: 'Logueado correctamente',
-			token: service.crearToken(usuario),
-		})
-	})
-}*/
-
+/*
 function iniciarSesion($auth, $location) {
     var vm = this;
     this.login = function(){
@@ -66,7 +54,7 @@ function iniciarSesion($auth, $location) {
             // Si ha habido errores llegamos a esta parte
         });
     }
-}
+}*/
 
 /*function updateUsuario (req, res){
 	let usuarioid = req.body.publicacionid
@@ -89,8 +77,27 @@ function getUsuario(req, res){
 	})
 }
 
+function updateUsuario(req, res){
+	let update = req.body
+
+	Publicacion.findByIdAndUpdate(publicacionid, update, (err, publicacionUpdated) => {
+		if(err) res.status(500).send({message: `Error al actualizar la publicación: ${err}`})
+		res.status(200).send({publicacion: publicacionUpdated})
+	})
+}
+
+function getUsuarios (req, res){
+	Usuario.find({}, (err, usuarios) => {
+		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+		if(!usuarios) return res.status(404).send('No existen usuarios')
+
+		res.status(200).send(usuarios)
+	})
+}
+
 module.exports = {
 	registro,
 	iniciarSesion,
-	getUsuario
+	getUsuario,
+	getUsuarios
 }

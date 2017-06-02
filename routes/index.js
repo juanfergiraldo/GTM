@@ -19,7 +19,7 @@ gtm.put('/publicacion', publicacionCtrl.updatePublicacion)
 
 
 //enpoint para ver todos los usuarios PARA VER COLECCIONES DE LA DB
-//gtm.get('/usuarios', usuarioCtrl.getUsuarios)
+gtm.get('/usuarios', usuarioCtrl.getUsuarios)
 //endpoint para un usuario
 gtm.get('/perfil/:usuarioNick', usuarioCtrl.getUsuario)   //falta implementarlo
 //endpoint registro usuario
