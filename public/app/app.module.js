@@ -1,7 +1,7 @@
 (function () {
   var config = function ($stateProvider,$urlRouterProvider) {
         $stateProvider
-              .state('home', {
+              /*.state('home', {
                 url: 'home',
                 templateUrl:'/public/app/auth/home.html',
                 controller:'homeController'
@@ -19,7 +19,7 @@
               })
               .state('login.prueba', { //Para ver cómo funciona
                 templateUrl:'/public/app/auth/prueba.html'
-              })
+              })*/
               .state('homeini', { //No sé cómo ubicarla en el árbol
                 url: '/',
                 templateUrl:'/public/app/views/homeini.html'
@@ -27,7 +27,7 @@
               .state('homeini.signin', {
                 url: 'signin',
                 templateUrl:'/public/app/views/signin.html',
-                controller:'logeoController'
+                controller:'logueoController'
               })
               .state('homeini.signup', {
                 url: 'signup',
@@ -40,7 +40,6 @@
               })
               $urlRouterProvider.otherwise('/');
       }
-
-  angular.module('app',['ui.router']).config(config)
+      angular.module('app',['ui.router','satellizer']).config(config)
 
 })()

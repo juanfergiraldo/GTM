@@ -26,8 +26,8 @@ app.engine('.hbs',hbs({ // Ya no se necesita
 app.set('view engine', '.hbs') //Tampoco
 
 app.use('/gtm', gtm)
-app.get('/login',(req, res) => {
-  res.render('login')
+app.get('/signin',(req, res) => {
+  res.render('signin')
 })
 app.get('/signup',(req, res) => {
   res.render('signup')
