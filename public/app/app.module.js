@@ -37,6 +37,17 @@
               .state('homelog', { //No sé cómo ubicarla en el árbol
                 url: '/homelog',
                 templateUrl:'/public/app/views/homelog.html' //Hoja donde el usuario ya se encuentra logeado
+                controller:'homelogController'
+              })
+              .state('homelog.publicar', {
+                url: 'publicar',
+                templateUrl:'/public/app/views/publicar.html'
+                controller:'publicarController'
+              })
+              .state('perfil', {
+                url: '/perfil',
+                templateUrl:'/public/app/views/perfil.html'
+                controller:'modificarPerfil' 
               })
               $urlRouterProvider.otherwise('/');
       }

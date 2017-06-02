@@ -15,7 +15,7 @@
     $scope.registrarse = function() { //La función del botón
       serviceApp.registrarse($scope.user).then(function(data) {
         console.log(data);
-        $state.go("homelog")
+        $state.go("homeini.signin")
 
       })
     }

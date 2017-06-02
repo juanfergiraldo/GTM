@@ -12,9 +12,10 @@
     }
 
     //establecer servicios de registrar, logeo
-    this.getProductos = function(){
+    this.getPublicaciones = function(){
       return $http.get(server + "publicacion")
     }
+<<<<<<< HEAD
 
 
 
@@ -68,6 +69,20 @@
             });
             return defer.promise;
         };
+=======
+    this.iniciarSesion = function(data) {
+      return $http.post(server + "signin", data)
+    }
+    this.crearPublicacion = function() {
+      return $http.post(server + "publicacion", data)
+    }
+    this.modificarPerfil = function(data) {
+      return $http.put(server + "perfil", data)
+    }
+    this.getUsuario = function() {
+      return $http.get(server + "perfil")
+    }
+>>>>>>> b19598e06c21e54b9344647ec3c28c6a8b940398
   }
 
   angular.module('app').service('serviceApp', ['$q', '$state', '$auth', '$http', '$timeout', 'baseUrl', serviceApp])
