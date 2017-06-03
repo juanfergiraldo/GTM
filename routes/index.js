@@ -15,19 +15,17 @@ gtm.get('/publicacion/', publicacionCtrl.getPublicacion)
 //endpoint eliminar publicacion
 gtm.delete('/publicacion', publicacionCtrl.deletePublicacion)
 //endpoint actualizar publicacion
-gtm.put('/publicacion', publicacionCtrl.updatePublicacion)
 
 
 //enpoint para ver todos los usuarios PARA VER COLECCIONES DE LA DB
-gtm.get('/usuarios', usuarioCtrl.getUsuarios)
+gtm.get('/usuarios', usuarioCtrl.obtenerUsuarios)
 //endpoint para un usuario
-gtm.get('/perfil/:usuarioNick', usuarioCtrl.getUsuario)   //falta implementarlo
-//endpoint registro usuario
-gtm.post('/signup', usuarioCtrl.registro)
+gtm.post('/signUp', usuarioCtrl.registrarUsuario)
 //endpoint para login
-gtm.post('/signin', usuarioCtrl.iniciarSesion)
+gtm.post('/signIn', usuarioCtrl.iniciarSesion)
 //endpoint para modificar perfil
-//gtm.put('/perfil', usuarioCtrl.updateUsuario) //falta implementarlo
+gtm.put('/perfil', auth, usuarioCtrl.actualizarUsuario)
+
 
 //para probar el middleware de comprobación
 gtm.get('/private', auth, function(req, res){
