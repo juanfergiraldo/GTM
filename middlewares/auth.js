@@ -2,6 +2,7 @@ const services = require('../services')
 
 function isAuth (req, res, next){
 	if(!req.headers.authorization){
+		console.log(req.headers.authorization)
 		return res.status(403).send({ message: 'Asegúrate de que tienes permiso para realizar esta acción'})
 	}
 
