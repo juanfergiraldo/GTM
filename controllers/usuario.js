@@ -4,8 +4,9 @@ const Usuario = require('../models/usuario')
 const service = require	('../services')
 const auth = require('../middlewares/auth')
 
-function registro(req, res){ //No se requiere la constraseña ya que en la base de datos se hashea para no exponerla
-	const usuario = new Usuario({
+
+function registrarUsuario(req, res){ //No se requiere la constraseña ya que en la base de datos se hashea para no exponerla
+		const usuario = new Usuario({
 		correo: req.body.correo,
 		nombre: req.body.nombre,
 		usuario: req.body.usuario,
@@ -35,44 +36,17 @@ function iniciarSesion(req, res){
 	})
 }
 
-
-/*function updateUsuario (req, res){
-	let usuarioid = req.body.publicacionid
-	let update = req.body
-
-	Publicacion.findByIdAndUpdate(publicacionid, update, (err, publicacionUpdated) => {
-		if(err) res.status(500).send({message: `Error al actualizar la publicación: ${err}`})
-		res.status(200).send({publicacion: publicacionUpdated})
-	})
-}*/
-
-function getUsuario(req, res){
-
-	let usuarioNick = req.params.usuarioNick
-
-	Usuario.findByUsuario(usuarioNick, (err, usuario) => {
-		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
-		if(!usuarios) return res.status(404).send('No existen usuarios')
-
-		res.status(200).send({usuario})
-	})
-}
-
-function prueba(req, res) {
-	return res.send({message: 'si lo diligenció'})
-}
-
-function updateUsuario(req, res){
-	let update = req.body
+function actualizarUsuario(req, res){
+	let actual = req.body
 	//console.log(service.decodeToken(token)) //no se hace uso del decode acá porque ya esta en req.user
-	let usuarioid = req.user
-	Usuario.findByIdAndUpdate(usuarioid, update, (err, usuarioUpdated) => {
+	let usuarioId = req.user
+	Usuario.findByIdAndUpdate(usuarioId, actual, (err, usuarioActualizado) => {
 		if(err) res.status(500).send({message: `Error al actualizar la publicación: ${err}`})
-		res.status(200).send({usuarioUpdated})
+		res.status(200).send({usuarioActualizado})
 	})
 }
 
-function getUsuarios (req, res){
+function obtenerUsuarios(req, res){
 	Usuario.find({}, (err, usuarios) => {
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
 		if(!usuarios) return res.status(404).send('No existen usuarios')
@@ -82,10 +56,8 @@ function getUsuarios (req, res){
 }
 
 module.exports = {
-	registro,
+	registrarUsuario,
 	iniciarSesion,
-	getUsuario,
-	updateUsuario,
-	getUsuarios,
-	prueba
+	actualizarUsuario,
+	obtenerUsuarios
 }

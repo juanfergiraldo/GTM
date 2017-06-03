@@ -18,17 +18,13 @@ gtm.delete('/publicacion', publicacionCtrl.deletePublicacion)
 
 
 //enpoint para ver todos los usuarios PARA VER COLECCIONES DE LA DB
-gtm.get('/usuarios', usuarioCtrl.getUsuarios)
+gtm.get('/usuarios', usuarioCtrl.obtenerUsuarios)
 //endpoint para un usuario
-gtm.get('/perfil/:usuarioNick', usuarioCtrl.getUsuario)   //falta implementarlo
-//endpoint registro usuario
-gtm.post('/signup', usuarioCtrl.registro)
+gtm.post('/signUp', usuarioCtrl.registrarUsuario)
 //endpoint para login
-gtm.post('/signin', usuarioCtrl.iniciarSesion)
+gtm.post('/signIn', usuarioCtrl.iniciarSesion)
 //endpoint para modificar perfil
-gtm.put('/perfil', auth, usuarioCtrl.updateUsuario)
-
-gtm.get('/prueba', auth, usuarioCtrl.prueba)
+gtm.put('/perfil', auth, usuarioCtrl.actualizarUsuario)
 
 //para probar el middleware de comprobación
 gtm.get('/private', auth, function(req, res){
