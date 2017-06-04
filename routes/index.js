@@ -8,8 +8,10 @@ const gtm = express.Router()
 
 //endpoint generar publicacion
 gtm.post('/publicacion', auth, publicacionCtrl.crearPublicacion)
-//endpoint enviar todas las publicaciones  PARA VER COLECCIONES DE LA DB
+//endpoint enviar todas las publicaciones
 gtm.get('/publicacion', auth, publicacionCtrl.obtenerTodasPublicaciones)
+//enpoint para ver todas las publicaciones del usuario en sesion
+gtm.get('/misPublicaciones', auth, publicacionCtrl.obtenerMisPublicaciones)
 //endpoint para las publicaciones hechas por el usuario
 gtm.get('/publicacion/', publicacionCtrl.getPublicacion)
 //endpoint eliminar publicacion

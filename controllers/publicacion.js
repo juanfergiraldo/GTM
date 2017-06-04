@@ -28,6 +28,20 @@ function obtenerTodasPublicaciones (req, res){
 	})
 }
 
+function obtenerMisPublicaciones (req, res){
+	Publicacion.find({}).sort({date: 'asc'}).exec(function(err, publicaciones) {
+		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+		if(!publicaciones) return res.status(404).send('No existen publicaciones')
+		for (i = 0; i < publicaciones.length; i++){				//Método para quitar las publicaciones de otros.
+			if(publicaciones[i].usuario_publica != req.user){
+				publicaciones.splice(i, 1)
+			}
+		}
+		res.status(200).send(publicaciones)
+	})
+}
+
+
 function getPublicacion(req, res){
 
 	Publicacion.find({usuario_publica : sesion.usuario}, (err, publicacion) => {
@@ -65,6 +79,7 @@ function updatePublicacion (req, res){
 
 module.exports = {
 	obtenerTodasPublicaciones,
+	obtenerMisPublicaciones,
 	deletePublicacion,
 	updatePublicacion,
 	crearPublicacion,
