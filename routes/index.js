@@ -49,7 +49,7 @@ gtm.post('/signUp', usuarioCtrl.registrarUsuario)
 //endpoint para login
 gtm.post('/signIn', usuarioCtrl.iniciarSesion)
 //endpoint para modificar perfil
-gtm.put('/perfil', auth, usuarioCtrl.actualizarUsuario)
+gtm.put('/perfil', usuarioCtrl.actualizarUsuario)
 
 //para probar el middleware de comprobación
 gtm.get('/private', auth, function(req, res){

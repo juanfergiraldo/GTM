@@ -1,25 +1,24 @@
 (function () {
-  function logueoController($scope, $state, serviceApp){
+  function logueoController($auth, $scope, $state, serviceApp){
       //serviceApp.ingresar($scope.user).then(function(data) {
         //console.log(data);
         //$state.go("homelog")
-        $scope.user = {
-            usuario: "",
-            contrasena: ""
-        };
-        $scope.mensaje = "";
+
         $scope.login = function () {
-            $scope.mensaje = "";
-            serviceApp.login($scope.user.usuario, $scope.user.contrasena).then(function () {
+            $auth.login($scope.user).then(function () {
                 $state.go("homelog");
-            }, function (response) {
-                if (response.data.code === 401) {
+            }, function(response) {
+              console.log(response.status);
+                if (response.status === 401) {
+                    toastr.success('You have successfully signed in!');
                     $scope.mensaje = "Usuario o contraseña incorrectos";
                 } else {
                     $scope.mensaje = "Hubo un error";
+                    toastr.error('You fucked it!');
                 }
             });
         };
+
         $scope.logout = function () {
             serviceApp.logout().then(function () {
                 $state.go("signin");
@@ -27,5 +26,5 @@
             });
         };
       }
-  angular.module('app').controller('logueoController', ['$scope', '$state', 'serviceApp', logueoController]) //El segundo parámetro es la función que se ejecuta en app.service
+  angular.module('app').controller('logueoController', ['$auth', '$scope', '$state', 'serviceApp', logueoController]) //El segundo parámetro es la función que se ejecuta en app.service
 })()
