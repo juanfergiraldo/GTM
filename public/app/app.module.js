@@ -1,5 +1,12 @@
 (function () {
-  var config = function ($stateProvider,$urlRouterProvider) {
+  var config = function ($authProvider, $stateProvider, $urlRouterProvider) {
+    const server = "http://localhost:3001/gtm/"
+
+    $authProvider.loginUrl = server + "signin";
+    $authProvider.tokenName = "SECRET_TOKEN";
+    $authProvider.tokenPrefix = "app";
+
+
         $stateProvider
               /*.state('home', {
                 url: 'home',
@@ -20,7 +27,7 @@
               .state('login.prueba', { //Para ver cómo funciona
                 templateUrl:'/public/app/auth/prueba.html'
               })*/
-              .state('homeini', { //No sé cómo ubicarla en el árbol
+              .state('homeini', {
                 url: '/',
                 templateUrl:'/public/app/views/homeini.html'
               })
@@ -34,20 +41,20 @@
                 templateUrl:'/public/app/views/signup.html',
                 controller:'signupController'
               })
-              .state('homelog', { //No sé cómo ubicarla en el árbol
+              .state('homelog', {
                 url: '/homelog',
-                templateUrl:'/public/app/views/homelog.html' //Hoja donde el usuario ya se encuentra logeado
+                templateUrl:'/public/app/views/homelog.html', //Hoja donde el usuario ya se encuentra logeado
                 controller:'homelogController'
               })
               .state('homelog.publicar', {
                 url: 'publicar',
-                templateUrl:'/public/app/views/publicar.html'
+                templateUrl:'/public/app/views/publicar.html',
                 controller:'publicarController'
               })
               .state('perfil', {
                 url: '/perfil',
-                templateUrl:'/public/app/views/perfil.html'
-                controller:'modificarPerfil' 
+                templateUrl:'/public/app/views/perfil.html',
+                controller:'modificarPerfilController'
               })
               $urlRouterProvider.otherwise('/');
       }

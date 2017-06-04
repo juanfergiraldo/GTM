@@ -30,7 +30,8 @@
     "mongoose": "^4.9.6",
     "mongoose-easy-auto-increment": "^1.0.1",
     "morgan": "^1.8.2",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

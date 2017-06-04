@@ -1,6 +1,6 @@
 <div class="container" align="center">
   <h1> Registrarme</h1>
-  <form id="signup" method="post">
+  <form ng-submit="registrarse()" id="signup" method="post">
     <div class="row">
       <div class="col s6 offset-s3">
         <input type="email" ng-model="user.correo" placeholder="Correo" name="correo" required ng-required="false" />
@@ -28,41 +28,10 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <!--
-    <div class="row">
-      <div class ="col s6 offset-s3">
-        <input type="text" placeholder="Direccion" name="direccion" required=""/>
-      </div>
-    </div>
-    <div class="row">
-      <div class ="col s6 offset-s3">
-        <input type="text" pattern="[\d]{7,10}" title="Ingrese un número telefónico válido" placeholder="Telefono" name="telefono" required=""/>
-      </div>
-    </div>
-    <div class="row">
-      <div class ="col s6 offset-s3">
-        <input type="text" placeholder="Pais" name="pais" required=""/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6 offset-s3">
-        <select name="genero" required="">
-          <option value="" disabled selected>Elige una opción</option>
-          <option value="Masculino">Masculino</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Indefinidp">Indefinidp</option>
-        </select>
-        <label>Genero</label>
-      </div>
-    </div>
-  -->
-=======
->>>>>>> b19598e06c21e54b9344647ec3c28c6a8b940398
     <div class="break"></div>
     <div class="row"></div>
     <div class="row">
-      <button class="btn waves-effect waves-light teal" ng-click="registrarse()" name="action" value="Ingresar">REGISTRARME
+      <button class="btn waves-effect waves-light teal" type="submit" name="action" value="Ingresar">REGISTRARME
           <i class="material-icons right">send</i>
       </button>
     </div>
