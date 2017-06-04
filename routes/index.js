@@ -13,9 +13,9 @@ gtm.get('/publicacion', auth, publicacionCtrl.obtenerTodasPublicaciones)
 //enpoint para ver todas las publicaciones del usuario en sesion
 gtm.get('/misPublicaciones', auth, publicacionCtrl.obtenerMisPublicaciones)
 //endpoint para las publicaciones hechas por el usuario
-gtm.get('/publicacion/', publicacionCtrl.getPublicacion)
+gtm.get('/publicacion/', auth, publicacionCtrl.getPublicacion)
 //endpoint eliminar publicacion
-gtm.delete('/publicacion', publicacionCtrl.deletePublicacion)
+gtm.delete('/publicacion/:publicacionid', auth, publicacionCtrl.eliminarPublicacion)
 //endpoint actualizar publicacion
 
 

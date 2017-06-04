@@ -52,8 +52,8 @@ function getPublicacion(req, res){
 	})
 }
 
-function deletePublicacion (req, res){
-	let publicacionid = req.body.publicacionid
+function eliminarPublicacion (req, res){
+	let publicacionid = req.params.publicacionid
 
 	Publicacion.findById(publicacionid, (err, publicacion) => {
 		if(err) res.status(500).send({message: `Error al eliminar la publicación: ${err}`})
@@ -80,7 +80,7 @@ function updatePublicacion (req, res){
 module.exports = {
 	obtenerTodasPublicaciones,
 	obtenerMisPublicaciones,
-	deletePublicacion,
+	eliminarPublicacion,
 	updatePublicacion,
 	crearPublicacion,
 	getPublicacion
