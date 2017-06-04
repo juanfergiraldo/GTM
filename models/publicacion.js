@@ -5,15 +5,17 @@ const autoIncrement = require('mongoose-easy-auto-increment')
 
 
 var publicacionSchema = new Schema({
-	fecha_publicado: {type: Date, default: Date.now},
-	fecha_caducado: {type: Date, default: Date.now + 7*24*60*60*1000},
 	descripcion: {type: String},
 	nombre_producto: {type: String},
 	//imagen: {data: Buffer, contentType: String},
 	categoria: {type: String},
-	usuario_publica: {type: String}
+	usuario_publica: {type: String},
+	fecha_publicado: {type: Date, default: Date.now},
+	fecha_caducado: {type: Date, default: new Date(+new Date() + 7*24*60*60*1000)} // Date in one week from now
 })
 
-publicacionSchema.plugin(autoIncrement, {field: 'codigo', collection: 'Counters'})
+publicacionSchema.statics.findByPublicador = function(usuario_publica, callback){
+    this.find({usuario_publica: new RegExp(usuario_publica, 'i')}, callback);
+};
 
 module.exports = mongoose.model('Publicacion', publicacionSchema)

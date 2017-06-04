@@ -2,7 +2,6 @@
 const mongoose = require ('mongoose')
 const Usuario = require('../models/usuario')
 const service = require	('../services')
-const auth = require('../middlewares/auth')
 
 
 function registrarUsuario(req, res){ //No se requiere la constraseña ya que en la base de datos se hashea para no exponerla
