@@ -39,7 +39,7 @@
                 templateUrl:'/public/app/views/homelog.html' //Hoja donde el usuario ya se encuentra logeado
                 controller:'homelogController'
               })
-              .state('homelog.publicar', {
+              .state('homeini.publicar', {
                 url: 'publicar',
                 templateUrl:'/public/app/views/publicar.html'
                 controller:'publicarController'
@@ -47,7 +47,7 @@
               .state('perfil', {
                 url: '/perfil',
                 templateUrl:'/public/app/views/perfil.html'
-                controller:'modificarPerfil' 
+                controller:'modificarPerfil'
               })
               $urlRouterProvider.otherwise('/');
       }

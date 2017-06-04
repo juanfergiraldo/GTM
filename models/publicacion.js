@@ -7,7 +7,7 @@ const autoIncrement = require('mongoose-easy-auto-increment')
 var publicacionSchema = new Schema({
 	descripcion: {type: String},
 	nombre_producto: {type: String},
-	//imagen: {data: Buffer, contentType: String},
+	imagen: {data: String},
 	categoria: {type: String},
 	usuario_publica: {type: String},
 	fecha_publicado: {type: Date, default: Date.now},

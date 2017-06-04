@@ -7,9 +7,10 @@ const app = express();
 const cors = require('cors');
 const gtm = require('./routes')
 const hbs = require('express-handlebars')
-const morgan = require('morgan');
+const morgan = require('morgan')
+const fileUpload = require('express-fileupload')
 
-
+app.use(fileUpload())
 app.use(cors())
 app.use(morgan('dev'))
 app.use('/public', express.static(__dirname + '/public'));

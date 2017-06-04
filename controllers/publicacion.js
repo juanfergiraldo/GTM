@@ -6,7 +6,7 @@ function crearPublicacion (req, res){
 		descripcion: req.body.descripcsion,
 		nombre_producto: req.body.nombre_producto,
 		categoria: req.body.categoria,
-		usuario_publica: req.user
+		usuario_publica: req.user,
 		//imagen: req.body.imagen
 	})
 	publicacion.save((err, publicacionStored) => {
