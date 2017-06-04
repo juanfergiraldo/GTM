@@ -14,7 +14,7 @@
                     $scope.mensaje = "Usuario o contraseña incorrectos";
                 } else {
                     $scope.mensaje = "Hubo un error";
-                    toastr.error('You fucked it!');
+                    toastr.error('Es posible que el usuario no exista, verifica que esté bien escrito');
                 }
             });
         };
