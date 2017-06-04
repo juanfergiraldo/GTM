@@ -1,10 +1,10 @@
 (function () {
+  const server = "http://localhost:3001/gtm/"
   function homelogController($scope, $state, serviceApp) {
-    $scope.publicaciones = {}
     $scope.traerPublicacion = function () {
-
+      return $http.get(server + "publicacion");
       serviceApp.getPublicaciones().then(function(data) {
-          console.log(data);
+
           $scope.publicaciones = data.data
       })
     }

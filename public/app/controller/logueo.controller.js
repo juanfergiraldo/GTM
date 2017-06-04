@@ -7,12 +7,14 @@
         $scope.login = function () {
             $auth.login($scope.user).then(function () {
                 $state.go("homelog");
-            }, function (response) {
-                if (response.data.code === 401) {
+            }, function(response) {
+              console.log(response.status);
+                if (response.status === 401) {
                     toastr.success('You have successfully signed in!');
                     $scope.mensaje = "Usuario o contraseña incorrectos";
                 } else {
                     $scope.mensaje = "Hubo un error";
+                    toastr.error('You fucked it!');
                 }
             });
         };
