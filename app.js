@@ -1,6 +1,5 @@
 //configuración del express
 
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express();
