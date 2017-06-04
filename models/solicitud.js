@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var solicitudSchema = new Schema({
-	_codigo: {type: String}
+	codigo: {type: String}
 	codigo_publicacion: {type: String}
 	usuario_pide: {type: String}
 });

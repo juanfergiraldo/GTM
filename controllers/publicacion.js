@@ -16,6 +16,7 @@ function crearPublicacion (req, res){
 }
 
 function obtenerTodasPublicaciones (req, res){
+
 	Publicacion.find({}).sort({date: 'asc'}).exec(function(err, publicaciones) {
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
 		if(!publicaciones) return res.status(404).send('No existen publicaciones')

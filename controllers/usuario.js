@@ -2,9 +2,9 @@
 const mongoose = require ('mongoose')
 const Usuario = require('../models/usuario')
 const service = require	('../services')
+const bcrypt = require('bcrypt-nodejs')
 
-
-function registrarUsuario(req, res){ //No se requiere la constraseña ya que en la base de datos se hashea para no exponerla
+function registrarUsuario(req, res){ 
 		const usuario = new Usuario({
 		correo: req.body.correo,
 		nombre: req.body.nombre,
@@ -22,16 +22,17 @@ function iniciarSesion(req, res){
 	Usuario.findOneByCorreo(req.body.correo, (err, usuario) => {
 		if(err) return res.status(500).send({message: err})
 		if(!usuario) return res.status(404).send({message: `No existe el usuario`})
-		if(usuario.contrasena == req.body.contrasena){
-				var token = service.crearToken(usuario)
-				res.status(200).send({
-					success: true,
-					message: 'Logueado correctamente',
-					token: token
-			})
-		}else{
-			return res.status(422).send({message: `La password no corresponde`})
-		}
+		bcrypt.compare(req.body.contrasena, usuario.contrasena, (err, result) => {
+				if(result)	{
+					var token = service.crearToken(usuario)
+					res.status(200).send({
+						success: true,
+						message: 'Logueado correctamente',
+						token: token
+				})
+			}
+			else { return res.status(422).send({message: `La password no corresponde`}) }
+		})
 	})
 }
 
