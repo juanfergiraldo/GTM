@@ -9,18 +9,21 @@ function crearPublicacion (req, res){
 		usuario_publica: req.user
 		//imagen: req.body.imagen
 	})
-
 	publicacion.save((err, publicacionStored) => {
 		if (err) res.status(500).send({message: `Error al generar la publicacion: ${err}`})
-		res.status(200).send({ publicacion: publicacionStored})
+		res.status(201).send({ publicacion: publicacionStored})
  	})
 }
 
-function getPublicaciones (req, res){
-	Publicacion.find({}, (err, publicaciones) => {
+function obtenerTodasPublicaciones (req, res){
+	Publicacion.find({}).sort({date: 'asc'}).exec(function(err, publicaciones) {
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
 		if(!publicaciones) return res.status(404).send('No existen publicaciones')
-
+		/*for (i = 0; i < publicaciones.length; i++){				//Método para quitar las publicaciones propias.
+			if(publicaciones[i].usuario_publica == req.user){
+				publicaciones.splice(i, 1)
+			}
+		}*/
 		res.status(200).send(publicaciones)
 	})
 }
@@ -61,7 +64,7 @@ function updatePublicacion (req, res){
 
 
 module.exports = {
-	getPublicaciones,
+	obtenerTodasPublicaciones,
 	deletePublicacion,
 	updatePublicacion,
 	crearPublicacion,
