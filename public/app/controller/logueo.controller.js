@@ -1,11 +1,12 @@
 (function () {
-  function logueoController($auth, $scope, $state, serviceApp){
+  function logueoController($auth, $scope, $state, serviceApp, $http){
       //serviceApp.ingresar($scope.user).then(function(data) {
         //console.log(data);
         //$state.go("homelog")
 
         $scope.login = function () {
-            $auth.login($scope.user).then(function () {
+            $auth.login($scope.user).then(function (response) {
+                $http.defaults.headers.common['authorization'] = "Bearer " + response.data.token;
                 $state.go("homelog");
             }, function(response) {
               console.log(response.status);
@@ -26,5 +27,5 @@
             });
         };
       }
-  angular.module('app').controller('logueoController', ['$auth', '$scope', '$state', 'serviceApp', logueoController]) //El segundo parámetro es la función que se ejecuta en app.service
+  angular.module('app').controller('logueoController', ['$auth', '$scope', '$state', 'serviceApp', '$http', logueoController]) //El segundo parámetro es la función que se ejecuta en app.service
 })()

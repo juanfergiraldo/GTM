@@ -2,8 +2,11 @@
 const Publicacion = require('../models/publicacion')
 
 function crearPublicacion (req, res){
-
+	console.log(req);
+	console.log(req.imagen)
+	console.log(req.headers['content-type'])
 	let imagenFile = req.files.imagen
+	console.log(imagenFile)
 	if (imagenFile == undefined){
 		return res.status(400).send('No se encontró ningún archivo')
 	}
@@ -17,7 +20,7 @@ function crearPublicacion (req, res){
 	}
 
 	const publicacion = new Publicacion({
-		descripcion: req.body.descripcsion,
+		descripcion: req.body.descripcion,
 		nombre_producto: req.body.nombre_producto,
 		categoria: req.body.categoria,
 		usuario_publica: req.user,
