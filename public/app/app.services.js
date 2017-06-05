@@ -30,7 +30,11 @@
 
     };
 
+    this.crearPublicacion = function(data) {
+      return $http.post(server + "publicacion", data)
+    }
 
+    
   }
 
   angular.module('app').service('serviceApp', ['$http', serviceApp])

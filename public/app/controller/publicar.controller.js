@@ -1,13 +1,15 @@
 (function() {
-  function publicarController($scope, $state, serviceApp) {
+  function publicarController($auth, $scope, $state, serviceApp) {
     $scope.crearPublicacion = function() {
       serviceApp.crearPublicacion($scope.publicacion).then(function(data) {
         console.log(data);
         $state.go("homelog")
 
       })
+    }, function (response) {
+      console.log(response)
     }
   }
 
-  angular.module('app').controller('publicarController', ['$scope', '$state', 'serviceApp', publicarController])
+  angular.module('app').controller('publicarController', ['$auth', '$scope', '$state', 'serviceApp', publicarController])
 })()

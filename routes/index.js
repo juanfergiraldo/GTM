@@ -25,7 +25,7 @@ const gtm = express.Router()
 })*/
 
 //endpoint generar publicacion
-gtm.post('/pruebaimagen', auth, publicacionCtrl.crearPublicacion)
+gtm.post('/publicacion', auth, publicacionCtrl.crearPublicacion)
 //endpoint enviar todas las publicaciones
 gtm.get('/publicacion', auth, publicacionCtrl.obtenerTodasPublicaciones)
 //enpoint para ver todas las publicaciones del usuario en sesion
