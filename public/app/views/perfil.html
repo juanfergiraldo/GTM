@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <div class="input-field col s3">
-        <select>
+        <select ng-model="perfil.genero">
         <option value="" disabled selected>Elige una opción</option>
         <option value="Masculino">Masculino</option>
         <option value="Femenino">Femenino</option>
@@ -29,17 +29,17 @@
     </div>
     <div class="row">
       <div class="col s3">
-        <input type="text" placeholder="Direccion" name="direccion" required="" />
+        <input type="text" ng-model ="perfil.direccion" placeholder="Direccion" name="direccion" required="" />
       </div>
     </div>
     <div class="row">
       <div class="col s3">
-        <input type="text" pattern="[\d]{7,10}" title="Ingrese un número telefónico válido" placeholder="Telefono" name="telefono" required="" />
+        <input type="text" ng-model="pefil.telefono" pattern="[\d]{7,10}" title="Ingrese un número telefónico válido" placeholder="Telefono" name="telefono" required="" />
       </div>
     </div>
     <div class="row">
       <div class="col s3">
-        <input type="text" placeholder="Pais" name="pais" required="" />
+        <input type="text" ng-model="perfil.pais" placeholder="Pais" name="pais" required="" />
       </div>
     </div>
     <button class="btn waves-effect waves-light teal" type="submit" name="action" value="Ingresar">Actualizar

@@ -18,17 +18,17 @@
 
     this.crearPublicacion = function() {
       return $http.post(server + "publicacion", data)
-    }  
+    }
 
-    this.modificarPerfil = function() { //Falta implementar
-
+    this.modificarPerfil = function(data) {
+      return $http.put(server + "perfil", data)
     };
 
     this.crearPublicacion = function(data) {
       return $http.post(server + "publicacion", data)
     }
 
-    
+
   }
 
   angular.module('app').service('serviceApp', ['$http', serviceApp])

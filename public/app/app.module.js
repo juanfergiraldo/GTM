@@ -7,7 +7,7 @@
     $authProvider.tokenPrefix = "app";
 
 
-        $stateProvider              
+        $stateProvider
               .state('homeini', {
                 url: '/',
                 templateUrl:'/public/app/views/homeini.html'
@@ -32,7 +32,7 @@
                 templateUrl:'/public/app/views/publicar.html',
                 controller:'publicarController'
               })
-              .state('perfil', {
+              .state('homelog.perfil', {
                 url: '/perfil',
                 templateUrl:'/public/app/views/perfil.html',
                 controller:'modificarPerfilController'

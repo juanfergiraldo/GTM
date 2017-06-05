@@ -1,8 +1,11 @@
 (function () {
   const server = "http://localhost:3001/gtm/"
-  function homelogController($auth, $scope, $state, serviceApp) {
+  function homelogController($http, $auth, $scope, $state, serviceApp) {
+
     $scope.nombreUsuario = function() {
-      console.log($auth.getPayload());
+        return $http.get(server + "homelog").then (function(response) {        
+        toastr.info('Nmms');
+      })
     }
 
     $scope.salir =  function() {
@@ -14,11 +17,10 @@
 
     $scope.traerPublicacion = function () {
       serviceApp.getPublicaciones().then(function(data) {
-
           $scope.publicaciones = data.data
       })
     }
   }
 
-  angular.module('app').controller('homelogController', ['$auth', '$scope', '$state', 'serviceApp', homelogController])
+  angular.module('app').controller('homelogController', ['$http', '$auth', '$scope', '$state', 'serviceApp', homelogController])
 })()

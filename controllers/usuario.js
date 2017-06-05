@@ -4,7 +4,7 @@ const Usuario = require('../models/usuario')
 const service = require	('../services')
 const bcrypt = require('bcrypt-nodejs')
 
-function registrarUsuario(req, res){ 
+function registrarUsuario(req, res){
 		const usuario = new Usuario({
 		correo: req.body.correo,
 		nombre: req.body.nombre,
@@ -46,9 +46,17 @@ function actualizarUsuario(req, res){
 	})
 }
 
+function getNombre(req, res) {
+	let nombreUsuario = service.decodeToken1()
+	res.status(200).send({
+		success: true,
+		nom: nombreUsuario.nom
+})
+}
 
 module.exports = {
 	registrarUsuario,
 	iniciarSesion,
-	actualizarUsuario
+	actualizarUsuario,
+	getNombre
 }
