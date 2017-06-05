@@ -16,15 +16,9 @@
       return $http.get(server + "publicacion")
     }
 
-    this.logout = function() {
-      var defer = $q.defer();
-      $auth.logout().then(function(data) {
-        defer.resolve(data);
-      }, function(response) {
-        defer.reject(response);
-      }).finally(function() {});
-      return defer.promise;
-    };
+    this.crearPublicacion = function() {
+      return $http.post(server + "publicacion", data)
+    }  
 
     this.modificarPerfil = function() { //Falta implementar
 

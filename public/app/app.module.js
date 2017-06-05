@@ -46,7 +46,7 @@
                 templateUrl:'/public/app/views/homelog.html', //Hoja donde el usuario ya se encuentra logeado
                 controller:'homelogController'
               })
-              .state('homeini.publicar', {
+              .state('homelog.publicar', {
                 url: 'publicar',
                 templateUrl:'/public/app/views/publicar.html',
                 controller:'publicarController'
@@ -59,6 +59,6 @@
               })
               $urlRouterProvider.otherwise('/');
       }
-      angular.module('app',['ui.router','satellizer']).config(config)
+      angular.module('app',['ui.router','satellizer', 'ngFileUpload']).config(config)
 
 })()

@@ -1,14 +1,14 @@
 <div class="" align="left">
   <h3>Publicar</h3>
-  <form encType="multipart/form-data" method="post" ng-submit="publicar()">
+  <form encType="multipart/form-data" method="post" ng-submit="crearPublicacion()">
     <div class="row">
       <div class="col s3">
-        <input type="text" placeholder="Nombre del producto" name="nmbre" required="" />
+        <input type="text" ng-model="publicacion.nombre_producto" placeholder="Nombre del producto" name="nmbre" required="" />
       </div>
     </div>
     <div class="row">
       <div class="input-field col s3">
-        <select>
+        <select ng-model="publicacion.categoria" >
         <option value="" disabled selected>Elige una categoría</option>
         <option value="Masculino">Ropa y Accesosrios</option>
         <option value="Femenino">Deportes</option>
@@ -21,11 +21,11 @@
       </div>
     </div>
     <div class="row">
-      <input type="file" name="imagen">      
+      <input type="file" uploader-model="publicacion.imagen" name="imagen">
     </div>
     <div class="row">
       <div class="col s3">
-        <input type="text" placeholder="Descripción del producto" name="Descripcion" required="" />
+        <input type="text" ng-model="publicacion.descripcion" placeholder="Descripción del producto" name="Descripcion" required="" />
       </div>
     </div>
     <button class="btn waves-effect waves-light teal" type="submit" name="action" value="Publicar">Publicar

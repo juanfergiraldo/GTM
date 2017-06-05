@@ -10,7 +10,7 @@
             }, function(response) {
               console.log(response.status);
                 if (response.status === 401) {
-                    toastr.success('You have successfully signed in!');
+                    toastr.success('Has entrado a GTM², ¡bien por vos! ');
                     $scope.mensaje = "Usuario o contraseña incorrectos";
                 } else {
                     $scope.mensaje = "Hubo un error";

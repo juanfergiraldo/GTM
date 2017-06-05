@@ -32,7 +32,7 @@ gtm.post('/pruebaimagen', function(req, res) {
  	})
 })*/
 //endpoint generar publicacion
-gtm.post('/pruebaimagen', auth, publicacionCtrl.crearPublicacion)
+gtm.post('/publicacion', publicacionCtrl.crearPublicacion)
 //endpoint enviar todas las publicaciones
 gtm.get('/publicacion', auth, publicacionCtrl.obtenerTodasPublicaciones)
 //enpoint para ver todas las publicaciones del usuario en sesion
