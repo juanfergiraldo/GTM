@@ -28,8 +28,19 @@
       return $http.post(server + "publicacion", data)
     }
 
-
   }
 
   angular.module('app').service('serviceApp', ['$http', serviceApp])
+
+  function usuarioService($scope){
+    var user;
+    this.set = function(data) {
+      user = data
+      console.log(user);
+    }
+    this.get = function() {
+      return user;
+    }
+  }
+  angular.module('app').service('usuarioService', [usuarioService])
 })()

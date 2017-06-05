@@ -48,7 +48,6 @@ gtm.put('/perfil', usuarioCtrl.actualizarUsuario)
 gtm.get('/private', auth, function(req, res){
 	res.status(200).send({ message: 'Tienes acceso' })
 })
-//Obtener el nombre del usuario
-gtm.get('/homelog', usuarioCtrl.getNombre)
+
 
 module.exports = gtm
