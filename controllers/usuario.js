@@ -4,7 +4,7 @@ const Usuario = require('../models/usuario')
 const service = require	('../services')
 const bcrypt = require('bcrypt-nodejs')
 
-function registrarUsuario(req, res){ 
+function registrarUsuario(req, res){
 		const usuario = new Usuario({
 		correo: req.body.correo,
 		nombre: req.body.nombre,

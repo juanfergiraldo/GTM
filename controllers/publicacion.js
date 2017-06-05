@@ -1,12 +1,10 @@
 
 const Publicacion = require('../models/publicacion')
+const Solicitud = require('../models/solicitud')
 
 function crearPublicacion (req, res){
-	console.log(req)
-	if(req.method == "POST"){
-      res.end(JSON.stringify(req.body)+JSON.stringify(req.files))
-			console.log(JSON.stringify(req.body)+JSON.stringify(req.files))
-	}
+	/*console.log(req)
+	console.log(req.body)
 	let imagenFile = req.files.imagen
 	if (imagenFile == undefined){
 		return res.status(400).send('No se encontró ningún archivo')
@@ -18,14 +16,14 @@ function crearPublicacion (req, res){
 		imagen.mv(pathPublicacion + nombreImagen, function(err) {
 			if (err)	return res.status(500).send({message: `Error al procesar la imagen: ${err}`})
 		})
-	}
+	}*/
 
 	const publicacion = new Publicacion({
 		descripcion: req.body.descripcion,
 		nombre_producto: req.body.nombre_producto,
 		categoria: req.body.categoria,
 		usuario_publica: req.user,
-		imagen: nombreImagen
+		//imagen: nombreImagen
 	})
 	publicacion.save((err, publicacionStored) => {
 		if (err) res.status(500).send({message: `Error al generar la publicacion: ${err}`})
@@ -36,14 +34,24 @@ function crearPublicacion (req, res){
 function obtenerTodasPublicaciones (req, res){
 
 	Publicacion.find({}).sort({date: 'asc'}).exec(function(err, publicaciones) {
+		var pub=publicaciones
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
-		if(!publicaciones) return res.status(404).send('No existen publicaciones')
+		if(!pub.length) return res.status(404).send({message: 'No existen publicaciones'})
 		/*for (i = 0; i < publicaciones.length; i++){				//Método para quitar las publicaciones propias.
 			if(publicaciones[i].usuario_publica == req.user){
 				publicaciones.splice(i, 1)
 			}
 		}*/
-		res.status(200).send(publicaciones)
+
+		for(i = 0; i < pub.length - 1; i++){
+				let id = pub[i]._id
+				Solicitud.findByPublicacion(id, function(err, solicitudes) {
+					if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+					pub[i].solicitudes = solicitudes.length
+				})
+				//console.log(pub[i])
+	  }
+		res.status(200).send(pub)
 	})
 }
 
@@ -62,8 +70,8 @@ function obtenerMisPublicaciones (req, res){
 
 
 function getPublicacion(req, res){
-
-	Publicacion.find({usuario_publica : sesion.usuario}, (err, publicacion) => {
+	let publicacionid = req.params.id
+	Publicacion.find({_id : publicacionid}, (err, publicacion) => {
 		if(err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
 		if(!publicacion) return res.status(404).send('No existen usuarios')
 

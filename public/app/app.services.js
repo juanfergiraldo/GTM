@@ -32,7 +32,25 @@
 
     this.crearPublicacion = function(data) {
       console.log(data);
-      return $http.post(server + "publicacion", data)
+      var formData = new FormData();
+      formData.append('nombre_producto', data.nombre_producto)
+      formData.append('categoria', data.categoria)
+      formData.append('descripcion', data.descripcion)
+      formData.append('imagen', data.imagen)
+      console.log(formData);
+      var req = {
+       method: 'POST',
+       url: server + 'publicacion',
+       headers: {
+         'Content-Type': 'multipart/form-data'
+       },
+       data: formData,
+       tranformRequest: function (data) {
+         return data
+       }
+
+      }
+      return $http(req)
     }
 
 
