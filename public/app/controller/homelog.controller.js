@@ -5,7 +5,7 @@
       console.log($auth.getPayload());
     }
 
-    $scope.salir function() {
+    $scope.salir =  function() {
       $auth.logout().then(function() {
         $state.go("homeini.signin")
         toastr.info('Has salido de GTM², ¡vuelve proto!');

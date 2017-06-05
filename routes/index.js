@@ -5,34 +5,27 @@ const usuarioCtrl = require('../controllers/usuario')
 const auth = require('../middlewares/auth')
 const gtm = express.Router()
 
-gtm.post('/pruebaimagen', function(req, res) {
-  if (!req.files)
-    return res.status(400).send('No files were uploaded.')
+/*gtm.post('/pruebaimagen', function(req, res){
+	console.log(req.files.sampleFile.name)
+  if (req.files.sampleFile == undefined){
+		return res.status(400).send('No files were uploaded.')
+	}
+	else{
+	  let sampleFile = req.files.sampleFile
+		let nombreFile = req.files.sampleFile.name
+		let pathProducto = './src/publicacion/'
+	  // Use the mv() method to place the file somewhere on your server
+	  sampleFile.mv(pathProducto + nombreFile, function(err) {
+	    if (err)
+	      return res.status(500).send(err)
 
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let sampleFile = req.files.sampleFile
-
-  // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
-    if (err)
-      return res.status(500).send(err)
-
-    res.send('File uploaded!')
-  })
-})
-
-//enpoint prueba imagen
-/*gtm.post('/upload',  function(req, res) {
-	const imagen = new Imagen({
-		imagen: req.files
-	})
-	imagen.save((err, imagen) => {
-		if (err) res.status(500).send({message: `Error al generar la imagen: ${err}`})
-		res.status(201).send({imagen})
- 	})
+	    res.send('File uploaded!')
+	  })
+	}
 })*/
+
 //endpoint generar publicacion
-gtm.post('/publicacion', publicacionCtrl.crearPublicacion)
+gtm.post('/publicacion', auth, publicacionCtrl.crearPublicacion)
 //endpoint enviar todas las publicaciones
 gtm.get('/publicacion', auth, publicacionCtrl.obtenerTodasPublicaciones)
 //enpoint para ver todas las publicaciones del usuario en sesion

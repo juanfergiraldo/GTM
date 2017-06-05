@@ -7,26 +7,7 @@
     $authProvider.tokenPrefix = "app";
 
 
-        $stateProvider
-              /*.state('home', {
-                url: 'home',
-                templateUrl:'/public/app/auth/home.html',
-                controller:'homeController'
-              })
-              .state('perfil', {
-                url: '/perfil',
-                templateUrl:'/public/app/auth/perfil.html'
-              })
-              .state('login', {
-                url: '/login',
-                templateUrl:'/public/app/auth/login.html'
-              })
-              .state('login.registro', {
-                templateUrl:'/public/app/auth/loginregistro.html'
-              })
-              .state('login.prueba', { //Para ver cómo funciona
-                templateUrl:'/public/app/auth/prueba.html'
-              })*/
+        $stateProvider              
               .state('homeini', {
                 url: '/',
                 templateUrl:'/public/app/views/homeini.html'
@@ -59,6 +40,6 @@
               })
               $urlRouterProvider.otherwise('/');
       }
-      angular.module('app',['ui.router','satellizer', 'ngFileUpload']).config(config)
+      angular.module('app',['ui.router','satellizer']).config(config)
 
 })()

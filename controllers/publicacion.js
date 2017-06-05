@@ -2,12 +2,29 @@
 const Publicacion = require('../models/publicacion')
 
 function crearPublicacion (req, res){
+	console.log(req);
+	console.log(req.imagen)
+	console.log(req.headers['content-type'])
+	let imagenFile = req.files.imagen
+	console.log(imagenFile)
+	if (imagenFile == undefined){
+		return res.status(400).send('No se encontró ningún archivo')
+	}
+	else{
+		var nombreImagen = imagenFile.name
+		let pathPublicacion = './src/publicacion/'
+		// Use the mv() method to place the file somewhere on your server
+		imagen.mv(pathPublicacion + nombreImagen, function(err) {
+			if (err)	return res.status(500).send({message: `Error al procesar la imagen: ${err}`})
+		})
+	}
+
 	const publicacion = new Publicacion({
-		descripcion: req.body.descripcsion,
+		descripcion: req.body.descripcion,
 		nombre_producto: req.body.nombre_producto,
 		categoria: req.body.categoria,
 		usuario_publica: req.user,
-		//imagen: req.body.imagen
+		imagen: nombreImagen
 	})
 	publicacion.save((err, publicacionStored) => {
 		if (err) res.status(500).send({message: `Error al generar la publicacion: ${err}`})
