@@ -1,8 +1,5 @@
 (function () {
   function logueoController($auth, $scope, $state, serviceApp, $http){
-      //serviceApp.ingresar($scope.user).then(function(data) {
-        //console.log(data);
-        //$state.go("homelog")
 
         $scope.login = function () {
             $auth.login($scope.user).then(function (response) {

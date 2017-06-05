@@ -2,11 +2,12 @@
 const Publicacion = require('../models/publicacion')
 
 function crearPublicacion (req, res){
-	console.log(req);
-	console.log(req.imagen)
-	console.log(req.headers['content-type'])
+	console.log(req)
+	if(req.method == "POST"){
+      res.end(JSON.stringify(req.body)+JSON.stringify(req.files))
+			console.log(JSON.stringify(req.body)+JSON.stringify(req.files))
+	}
 	let imagenFile = req.files.imagen
-	console.log(imagenFile)
 	if (imagenFile == undefined){
 		return res.status(400).send('No se encontró ningún archivo')
 	}

@@ -5,7 +5,7 @@
 </script>
 <div class="" align="left">
   <h3>Publicar</h3>
-  <form enctype="multipart/form-data" method="post" ng-submit="crearPublicacion()">
+  <form method="post" enctype="multipart/form-data" ng-submit="crearPublicacion()">
     <div class="row">
       <div class="col s3">
         <input type="text" ng-model="publicacion.nombre_producto" placeholder="Nombre del producto" name="nombre" required="" />
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="row">
-      <input type="file" name="imagen" ng-model="publicacion.imagen">
+      <file name="imagen" ng-model="publicacion.imagen" accept="image/png,image/jpg,image/jpeg">
     </div>
     <div class="row">
       <div class="col s3">

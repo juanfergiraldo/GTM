@@ -3,7 +3,7 @@ const services = require('../services')
 function isAuth (req, res, next){
 	if(!req.headers.authorization){
 		console.log(req.headers.authorization)
-		return res.status(403).send({ message: 'Asegúrate de que tienes permiso para realizar esta acción'})
+		return res.status(401).send({ message: 'Asegúrate de que tienes permiso para realizar esta acción'})
 	}
 
 //split para separar el beater y el tken que componen la cabecera de autorizacion

@@ -17,9 +17,10 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.get('/',function (req,res) {
    return res.sendfile('./public/index.html') //Página de inicio por defecto.
 })
-app.use(bodyParser({ keepExtensions: true}))
+
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+
 app.engine('.hbs',hbs({ // Ya no se necesita
   defaultLayout: 'default',
   extname:'.hbs'
