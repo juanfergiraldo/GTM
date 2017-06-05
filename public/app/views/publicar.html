@@ -1,12 +1,38 @@
-<html>
-  <body>
-    <form ref='uploadForm'
-      id='uploadForm'
-      action='http://localhost:8000/gtm/pruebaimagen'
-      method='post'
-      encType="multipart/form-data">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
-    </form>
-  </body>
-</html>
+<div class="" align="left">
+  <h3>Publicar</h3>
+  <form encType="multipart/form-data" method="post" ng-submit="publicar()">
+    <div class="row">
+      <div class="col s3">
+        <input type="text" placeholder="Nombre del producto" name="nmbre" required="" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        <select>
+        <option value="" disabled selected>Elige una categoría</option>
+        <option value="Masculino">Ropa y Accesosrios</option>
+        <option value="Femenino">Deportes</option>
+        <option value="Indefinido">Hogar</option>
+        <option value="Indefinido">Tecnología</option>
+        <option value="Indefinido">Libros</option>
+        <option value="Indefinido">Otros</option>
+      </select>
+        <label>Categoría</label>
+      </div>
+    </div>
+    <div class="row">
+      <input type="file" name="imagen">      
+    </div>
+    <div class="row">
+      <div class="col s3">
+        <input type="text" placeholder="Descripción del producto" name="Descripcion" required="" />
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light teal" type="submit" name="action" value="Publicar">Publicar
+            <i class="material-icons right">send</i>
+        </button>
+        <div class="row">
+
+        </div>
+  </form>
+</div>
