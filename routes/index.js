@@ -33,4 +33,5 @@ gtm.post('/publicacion/:id', auth, solicitudCtrl.crearSolicitud)
 //borrar solicitud
 gtm.delete('/solicitud/:id', auth, solicitudCtrl.eliminarSolicitud)
 
+
 module.exports = gtm

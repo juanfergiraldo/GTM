@@ -1,9 +1,9 @@
 (function() {
   function modificarPerfilController($scope, $state, serviceApp) {
     $scope.modificarPerfil = function() {
-      serviceApp.modificarPerfil($scope.publicacion).then(function(data) {
+      serviceApp.modificarPerfil($scope.perfil).then(function(data) {
         console.log(data);
-        $state.go("perfil")
+        $state.go("homelog")
 
       })
     }

@@ -3,14 +3,13 @@ const jwt = require('jwt-simple') //Librería utilizada para codificar y decodif
 const moment = require('moment') //Librería para simplficar el manejo de fechas
 const config = require('../config')
 
-
 function crearToken(usuario){
 	const payload = {
-		sub: usuario._id,							//NEL
+		nom: usuario.usuario,
+		sub: usuario._id,		//NEL
 		iat: moment().unix(),					//fecha del momento en que se crea el token en formato unix
 		exp: moment().add(14, 'days').unix //fecha de expiración del token
 	}
-
 	return jwt.encode(payload, config.SECRET_TOKEN) //Llama el token desde el módilo config
 }
 
@@ -36,6 +35,7 @@ function decodeToken(token){		//uso de promesas de forma nativa, dentro del prop
 	})
 	return decoded
 }
+
 
 module.exports = {
 	crearToken,

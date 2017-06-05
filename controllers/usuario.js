@@ -28,7 +28,8 @@ function iniciarSesion(req, res){
 					res.status(200).send({
 						success: true,
 						message: 'Logueado correctamente',
-						token: token
+						token: token,
+						nom: usuario.usuario
 				})
 			}
 			else { return res.status(422).send({message: `La password no corresponde`}) }

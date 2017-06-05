@@ -16,18 +16,12 @@
       return $http.get(server + "publicacion")
     }
 
-    this.logout = function() {
-      var defer = $q.defer();
-      $auth.logout().then(function(data) {
-        defer.resolve(data);
-      }, function(response) {
-        defer.reject(response);
-      }).finally(function() {});
-      return defer.promise;
-    };
+    this.crearPublicacion = function() {
+      return $http.post(server + "publicacion", data)
+    }
 
-    this.modificarPerfil = function() { //Falta implementar
-
+    this.modificarPerfil = function(data) {
+      return $http.put(server + "perfil", data)
     };
 
     this.crearPublicacion = function(data) {
@@ -53,8 +47,19 @@
       return $http(req)
     }
 
-
   }
 
   angular.module('app').service('serviceApp', ['$http', serviceApp])
+
+  function usuarioService($scope){
+    var user;
+    this.set = function(data) {
+      user = data
+      console.log(user);
+    }
+    this.get = function() {
+      return user;
+    }
+  }
+  angular.module('app').service('usuarioService', [usuarioService])
 })()

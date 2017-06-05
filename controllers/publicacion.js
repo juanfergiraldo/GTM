@@ -3,9 +3,11 @@ const Publicacion = require('../models/publicacion')
 const Solicitud = require('../models/solicitud')
 
 function crearPublicacion (req, res){
-	/*console.log(req)
-	console.log(req.body)
+	/*console.log(req);
+	console.log(req.imagen)
+	console.log(req.headers['content-type'])
 	let imagenFile = req.files.imagen
+	console.log(imagenFile)
 	if (imagenFile == undefined){
 		return res.status(400).send('No se encontró ningún archivo')
 	}
